@@ -7,7 +7,7 @@ export const SideBar = () => {
     <div className="sideBar">
       <h2 className="sideBar__title">Films Blog</h2>
 
-      <p>Search for</p>
+      <p className="sideBar__search">Search for</p>
       <lu className="sideBar_list">
         <li className="sideBar_item">
           Actors
