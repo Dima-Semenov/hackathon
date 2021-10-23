@@ -1,20 +1,19 @@
 .home-screen {
 	display: flex;
-  flex-grow: 1;
+	flex-grow: 1;
 
-  &__content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
+	&__content {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
 
-  &__wrap {
-    background-color: #E7FFF8;
-    position: relative;
-    z-index: 1;
-    margin-top: -40px;
-    display: flex;
-    border-radius: 20px;
-    padding: 40px 20px;
-  }
+	&__wrap {
+		background-color: #e7fff8;
+		position: relative;
+		margin-top: -40px;
+		display: flex;
+		border-radius: 20px;
+		padding: 40px 20px;
+	}
 }
