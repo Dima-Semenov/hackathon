@@ -10,7 +10,7 @@ const CardsContainer = () => {
 
 	return (
 		<div className="card-main-container">
-			{value.map(elem => {
+			{value?.map(elem => {
 				return (
 					<Card
 						key={elem.id}

@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router'
 
 import { CurrentBlog, Home } from './screens'
 import './App.scss'
+import './assets/scss/style.scss';
 
 function App() {
 	return (

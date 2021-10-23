@@ -59,6 +59,6 @@ export const blogSlice = createSlice({
 
 export const { setAllBlogs } = blogSlice.actions
 
-export const getAllBlogs = state => state.blog.allBlogs
+export const getAllBlogs = state => initialState.allBlogs
 
 export default blogSlice.reducer

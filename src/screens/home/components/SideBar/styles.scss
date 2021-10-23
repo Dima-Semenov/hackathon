@@ -1,11 +1,17 @@
 .sideBar {
-	max-width: 300px;
+	max-width: 250px;
 	width: 100%;
 	padding: 20px;
 	height: 100vh;
+  position: relative;
+
+  &__wrap {
+    position: fixed;
+    top: 20px;
+  }
 
 	&__title {
-		font-size: 40px;
+		font-size: 34px;
 		text-align: center;
 		color: #58daa8;
 		padding-bottom: 70px;
@@ -51,7 +57,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 500;
     cursor: pointer;
     margin-bottom: 20px;

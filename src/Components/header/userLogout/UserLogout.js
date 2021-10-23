@@ -1,7 +1,4 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
-
-// import ModalWindow from '../../../shared/components/modalWindow/ModalWindow';
 // import { logOut } from '../../../redux/auth/auth.operations';
 // import { ReactComponent as LogoutSvg } from '../../../assets/icons/logout.jpg';
 
