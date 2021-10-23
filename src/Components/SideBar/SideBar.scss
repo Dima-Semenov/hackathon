@@ -1,0 +1,14 @@
+.sideBar {
+  max-width: 300px;
+  width: 100%;
+  padding: 20px;
+  height: 100vh;
+  background-color: rgb(122, 137, 151);
+
+  &__title {
+    font-size: 26px;
+    text-align: center;
+    color: #58DAA8;
+  }
+
+}
