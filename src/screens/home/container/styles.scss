@@ -1,4 +1,10 @@
 .home-screen {
 	display: flex;
   flex-grow: 1;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 }
