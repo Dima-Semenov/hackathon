@@ -1,53 +1,48 @@
-import { withRouter } from 'react-router-dom'
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import '../searchForm/searchForm.scss'
 
-class SearchForm extends Component {
-	state = {
-		name: '',
+const SearchForm = () => {
+  const [name, setName] = useState('');
+
+	const handleChange = e => {
+		const { value } = e.currentTarget
+		setName(value);
 	}
 
-	handleChange = e => {
-		const { name, value } = e.currentTarget
-		this.setState({ [name]: value })
+  const reset = () => {
+		setName('');
 	}
 
-	handleSubmit = e => {
+	const handleSubmit = e => {
 		e.preventDefault()
 
-		this.props.onSubmit(this.state.name.trim())
-		if (!this.state.name) {
+		this.props.onSubmit(name.trim())
+		if (!name) {
 			alert('Поле не может быть пустым!')
 			return
 		}
-		this.reset()
+		reset()
 	}
 
-	reset = () => {
-		this.setState({ name: '' })
-	}
-
-	render() {
-		return (
-			<div>
-				<form className="SearchForm" onSubmit={this.handleSubmit}>
-					<input
-						className="SearchForm-input"
-						name="name"
-						onChange={this.handleChange}
-						value={this.state.name}
-						type="text"
-						autoComplete="off"
-						autoFocus
-						placeholder="Search"
-					/>
-					<button type="submit" className="SearchForm-button">
-						<span className="SearchForm-button-label">Search</span>
-					</button>
-				</form>
-			</div>
-		)
-	}
+  return (
+    <div>
+      <form className="SearchForm" onSubmit={handleSubmit}>
+        <input
+          className="SearchForm-input"
+          name="name"
+          onChange={handleChange}
+          value={name}
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search"
+        />
+        <button type="submit" className="SearchForm-button">
+          <span className="SearchForm-button-label">Search</span>
+        </button>
+      </form>
+    </div>
+  )
 }
 
-export default withRouter(SearchForm)
+export default SearchForm;

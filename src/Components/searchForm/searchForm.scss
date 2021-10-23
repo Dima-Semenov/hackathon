@@ -1,13 +1,11 @@
 .SearchForm {
-	margin-top: 20px;
 	display: flex;
 	align-items: center;
 	width: 100%;
-	max-width: 170px;
+	max-width: 400px;
 	background-color: #fff;
 	border-radius: 30px;
 	overflow: hidden;
-	margin-left: 20px;
 }
 .SearchForm-button {
 	display: inline-block;
@@ -45,8 +43,7 @@
 	font-size: 20px;
 	border: none;
 	outline: none;
-	padding-left: 4px;
-	padding-right: 4px;
+	padding: 0 20px;
 	text-align: center;
 }
 .SearchForm-input::placeholder {
