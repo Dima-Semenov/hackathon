@@ -1,0 +1,21 @@
+.header_main_container {
+	background-image: url(../../assets//icons/background.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 250px;
+
+	@media screen and (min-width: 768px) {
+		height: 350px;
+	}
+	@media screen and (min-width: 1280px) {
+		height: 400px;
+	}
+}
+.header_container {
+	display: flex;
+	justify-content: space-around;
+}
+
+.header-backgroundImg {
+	width: 350px;
+}
