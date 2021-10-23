@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react'
-import CardsContainer from './Components/card/CardsContainer'
-import './assets/scss/style.scss'
+import React from 'react'
+import { Redirect, Route, Switch } from 'react-router'
 
-import Header from './Components/header/Header'
-
-import Home from './screens/home/container/index'
+import { CurrentBlog, Home } from './screens'
+import './App.scss'
 
 function App() {
 	return (
-		<div className="App">
-			<Header />
-			<Home />
-			<CardsContainer />
+		<div className="App container">
+			<Switch>
+				<Route path="/home" component={Home} />
+				<Route path="/blog/:id" component={CurrentBlog} />
+
+				<Redirect to="/home" />
+			</Switch>
 		</div>
 	)
 }
