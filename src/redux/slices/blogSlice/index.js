@@ -1,49 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const STATE_KEY = 'blog'
+const KEY = "67aa0da8c89889f506f05ef1d428dc04";
+
+export const getAllBlogsFromApi = createAsyncThunk(
+  'blog/getAll',
+  async (body) => {
+    const { page } = body;
+    const data = await fetch(
+      `https://api.themoviedb.org/3/trending/movie/week?api_key=${KEY}&page=${page}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+    return data.json()
+  },
+)
 
 const initialState = {
-	allBlogs: [
-		{
-			id: 'tt1375666',
-			resultType: 'Title',
-			image:
-				'https://imdb-api.com/images/original/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_Ratio0.6800_AL_.jpg',
-			title: 'Inception',
-			description: '(2010)',
-		},
-		{
-			id: 'tt5295894',
-			resultType: 'Title',
-			image:
-				'https://imdb-api.com/images/original/MV5BMjE0NGIwM2EtZjQxZi00ZTE5LWExN2MtNDBlMjY1ZmZkYjU3XkEyXkFqcGdeQXVyNjMwNzk3Mjk@._V1_Ratio0.6800_AL_.jpg',
-			title: 'Inception: The Cobol Job',
-			description: '(2010 Video)',
-		},
-		{
-			id: 'tt5295990',
-			resultType: 'Title',
-			image:
-				'https://imdb-api.com/images/original/MV5BZGFjOTRiYjgtYjEzMS00ZjQ2LTkzY2YtOGQ0NDI2NTVjOGFmXkEyXkFqcGdeQXVyNDQ5MDYzMTk@._V1_Ratio0.6800_AL_.jpg',
-			title: 'Inception: Jump Right Into the Action',
-			description: '(2010 Video)',
-		},
-		{
-			id: 'tt1686778',
-			resultType: 'Title',
-			image: 'https://imdb-api.com/images/original/nopicture.jpg',
-			title: 'Inception: 4Movie Premiere Special',
-			description: '(2010 TV Movie)',
-		},
-		{
-			id: 'tt12960252',
-			resultType: 'Title',
-			image: 'https://imdb-api.com/images/original/nopicture.jpg',
-			title: 'Inception Premiere',
-			description: '(2010)',
-		},
-	],
-	kjgmhjmfg: 'IDHLKD',
+	allBlogs: [],
 }
 
 export const blogSlice = createSlice({
@@ -54,11 +32,21 @@ export const blogSlice = createSlice({
 			const { allBlogs } = action.payload
 			state.allBlogs = allBlogs
 		},
+
 	},
+  extraReducers: (builder) => {
+    builder.addCase(getAllBlogsFromApi.fulfilled, (state, action) => {
+      state.allBlogs = [...state.allBlogs, ...action.payload.results];
+    })
+    // builder.addCase(getAllBlogsFromApi.pending, (state, action) => {
+    //   console.log("Pending")
+    //   state.allBlogs = action.payload.results;
+    // })
+  },
 })
 
 export const { setAllBlogs } = blogSlice.actions
 
-export const getAllBlogs = state => initialState.allBlogs
+export const getAllBlogs = state => state.blog.allBlogs
 
 export default blogSlice.reducer
