@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import CardsContainer from './Components/card/CardsContainer'
+import './assets/scss/style.scss'
 
 import Header from './Components/header/Header'
 
@@ -9,6 +11,7 @@ function App() {
 		<div className="App">
 			<Header />
 			<Home />
+			<CardsContainer />
 		</div>
 	)
 }
