@@ -1,9 +1,18 @@
 import React from 'react'
-
+import { RightSidebar } from '../components/RightSidebar/RightSidebar'
+import { SideBar } from '../components/SideBar/SideBar'
 import './styles.scss'
 
-const Home = () => {
-	return <div className="home-screen">Home</div>
+export const Home = () => {
+	return (
+		<div className="home-screen">
+			<SideBar />
+			<RightSidebar
+				title={'title'}
+				describtion={'description'}
+				date={'date'}
+				authors={'authors'}
+			/>
+		</div>
+	)
 }
-
-export default Home
