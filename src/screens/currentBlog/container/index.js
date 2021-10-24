@@ -41,8 +41,6 @@ export const CurrentBlog = () => {
 		])
 	}, [id])
 
-	console.log(blog)
-	console.log(loadData)
 	const headers = [
 		{ label: 'Title', key: 'title' },
 		{ label: 'Release Date', key: 'release_date' },
@@ -61,10 +59,20 @@ export const CurrentBlog = () => {
 		filename: 'Film_data.csv',
 	}
 
+  const goBack = () => {
+    history.goBack()
+  }
+
 	return !currentBlog ? (
 		<div>Loading....</div>
 	) : (
 		<div className="current-blog">
+
+      <button  onClick={goBack} className="current-blog__button" style={{ position: 'absolute', top:10, zIndex: 2 }}>
+        Back to home
+      </button>
+
+
 			<div className="current-blog__back" onClick={() => history.push('/home')}>
 				<img
 					src={`https://image.tmdb.org/t/p/original/${currentBlog?.backdrop_path}`}
