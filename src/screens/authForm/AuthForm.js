@@ -2,7 +2,6 @@ import React, { useMemo, useState } from 'react'
 
 import { useDispatch } from 'react-redux'
 import {
-	login,
 	register,
 } from '../../redux/slices/blogSlice/auth/auth.operations'
 
@@ -57,11 +56,8 @@ export default function AuthForm() {
 	const handleSubmit = values => {
 		if (action === 'register') {
 			dispatch(register(values))
-			console.log(dispatch(register(values)))
 		} else if (action === 'login') {
-			const res = dispatch(login(values))
-
-			console.log(res)
+			// const res = dispatch(login(values))
 		}
 	}
 

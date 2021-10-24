@@ -16,7 +16,6 @@ export const SideBar = () => {
 	const sortedBy = useSelector(getSortedBy)
 	const [isActive, setIsActive] = useState(false)
 
-	console.log('dddddddddd', favoriteFilm)
 	useEffect(() => {
 		window.scrollTo(0, 0)
 	}, [sortedBy])

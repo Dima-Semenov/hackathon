@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { Redirect, Route, Switch } from 'react-router'
-import { ToastContainer, Zoom } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import 'react-toastify/dist/ReactToastify.css'
 

@@ -90,7 +90,6 @@ export const blogSlice = createSlice({
 			const isAlredyInArr = state.arrFavoriteFilm.includes(id)
 
 			if (isAlredyInArr) {
-				console.log([...state.arrFavoriteFilm.filter(item => item !== id)])
 				state.arrFavoriteFilm = [
 					...state.arrFavoriteFilm.filter(item => item !== id),
 				]
@@ -101,7 +100,6 @@ export const blogSlice = createSlice({
 		getFavoritesFilmInUser: (state, action) => {
 			const { films } = action.payload
 
-			console.log([...state.allBlogs].filter(item => films.includes(item.id)))
 
 			state.arrayFavotiteFilms = [...state.allBlogs].filter(item =>
 				films.includes(item.id),
