@@ -25,7 +25,7 @@ export const getCurrentBlog = createAsyncThunk(
 	async body => {
 		const { movieId } = body
 		const data = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${KEY}`,
+			`https://api.themoviedb.org/3/movie/${movieId}?api_key=${KEY}`,
 			{
 				method: 'GET',
 				headers: {
@@ -41,10 +41,10 @@ const initialState = {
 	allBlogs: [],
 	currentPage: 2,
 	searchFilm: '',
-  currentBlog: {},
-  sortedBy: {},
-  arrFavoriteFilm: [],
-  arrayFavotiteFilms: [],
+	currentBlog: {},
+	sortedBy: {},
+	arrFavoriteFilm: [],
+	arrayFavotiteFilms: [],
 }
 
 export const blogSlice = createSlice({
@@ -58,46 +58,59 @@ export const blogSlice = createSlice({
 			const { search } = action.payload
 			state.searchFilm = search
 		},
-    orderByHight: (state) => {
-      state.allBlogs = [...state.allBlogs.sort((a, b) => a.vote_average - b.vote_average)]
-      state.sortedBy = {
-        sortedBy: 'hight',
-        name: 'Rating (descending)',
-      };
-    },
-    orderByLower: (state) => {
-      state.allBlogs = [...state.allBlogs.sort((a, b) => b.vote_average - a .vote_average)]
-      state.sortedBy = {
-        sortedBy: 'lower',
-        name: 'Rating (growing)',
-      };
-    },
-    orderByPopulation: (state) => {
-      state.allBlogs = [...state.allBlogs.sort((a, b) => b.popularity - a .popularity)]
-      state.sortedBy = {
-        sortedBy: 'population',
-        name: 'The most popular',
-      };
-    },
-    addFavoriteFilm: (state, action) => {
-      const { id } = action.payload;
-      const isAlredyInArr = state.arrFavoriteFilm.includes(id);
+		orderByHight: state => {
+			state.allBlogs = [
+				...state.allBlogs.sort((a, b) => a.vote_average - b.vote_average),
+			]
+			state.sortedBy = {
+				sortedBy: 'hight',
+				name: 'Rating (descending)',
+			}
+		},
+		orderByLower: state => {
+			state.allBlogs = [
+				...state.allBlogs.sort((a, b) => b.vote_average - a.vote_average),
+			]
+			state.sortedBy = {
+				sortedBy: 'lower',
+				name: 'Rating (growing)',
+			}
+		},
+		orderByPopulation: state => {
+			state.allBlogs = [
+				...state.allBlogs.sort((a, b) => b.popularity - a.popularity),
+			]
+			state.sortedBy = {
+				sortedBy: 'population',
+				name: 'The most popular',
+			}
+		},
+		addFavoriteFilm: (state, action) => {
+			const { id } = action.payload
+			const isAlredyInArr = state.arrFavoriteFilm.includes(id)
 
-      if (isAlredyInArr) {
-        state.arrFavoriteFilm = [...state.arrFavoriteFilm].filter(item => item !== id)
-      } else {
-        state.arrFavoriteFilm = [...state.arrFavoriteFilm, id];
-      }
-    },
-    getFavoritesFilmInUser: (state, action) => {
-      const { films } = action.payload;
+			if (isAlredyInArr) {
+				console.log([...state.arrFavoriteFilm.filter(item => item !== id)])
+				state.arrFavoriteFilm = [
+					...state.arrFavoriteFilm.filter(item => item !== id),
+				]
+			} else {
+				state.arrFavoriteFilm = [...state.arrFavoriteFilm, id]
+			}
+		},
+		getFavoritesFilmInUser: (state, action) => {
+			const { films } = action.payload
 
-      state.arrayFavotiteFilms = [...state.allBlogs].filter(item => films.includes(item.id))
-      state.sortedBy = {
-        sortedBy: 'Favorites',
-        name: 'My Favorites films',
-      };
-    },
+			console.log([...state.allBlogs].filter(item => films.includes(item.id)))
+
+			state.arrayFavotiteFilms = [...state.allBlogs].filter(item =>
+				films.includes(item.id),
+			)
+			state.sortedBy = {
+				sortedBy: 'Favorites',
+				name: 'My Favorites films',
+			}
+		},
 	},
 	extraReducers: builder => {
 		builder.addCase(getAllBlogsFromApi.fulfilled, (state, action) => {
@@ -110,12 +123,20 @@ export const blogSlice = createSlice({
 			}
 		})
 		builder.addCase(getCurrentBlog.fulfilled, (state, action) => {
-			state.currentBlog = action.payload;
+			state.currentBlog = action.payload
 		})
 	},
 })
 
-export const { setNextPage, setSearchFilm, orderByHight, orderByLower, orderByPopulation, addFavoriteFilm, getFavoritesFilmInUser } = blogSlice.actions
+export const {
+	setNextPage,
+	setSearchFilm,
+	orderByHight,
+	orderByLower,
+	orderByPopulation,
+	addFavoriteFilm,
+	getFavoritesFilmInUser,
+} = blogSlice.actions
 
 export const getAllBlogs = state => state.blog.allBlogs
 export const getPages = state => state.blog.currentPage

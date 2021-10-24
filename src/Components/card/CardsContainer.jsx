@@ -18,6 +18,12 @@ const CardsContainer = () => {
   const arrayFavotiteFilms = useSelector(getArrayFavotiteFilms);
 
   useEffect(() => {
+    console.log('odesw', arrayFavotiteFilms)
+  }, [arrayFavotiteFilms])
+  
+  console.log('---------------')
+
+  useEffect(() => {
     dispatch(getAllBlogsFromApi({ page: 1 }))
   }, [])
 

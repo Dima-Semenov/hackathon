@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	getFavoriteFilm,
@@ -14,7 +14,9 @@ export const SideBar = () => {
 	const dispatch = useDispatch()
 	const favoriteFilm = useSelector(getFavoriteFilm)
 	const sortedBy = useSelector(getSortedBy)
+	const [isActive, setIsActive] = useState(false)
 
+	console.log('dddddddddd', favoriteFilm)
 	useEffect(() => {
 		window.scrollTo(0, 0)
 	}, [sortedBy])
@@ -23,6 +25,12 @@ export const SideBar = () => {
 		const burger = document.querySelector('.sideBar')
 		burger.classList.remove('sideBar-active')
 	}
+
+	useEffect(() => {
+		if (isActive) {
+			dispatch(getFavoritesFilmInUser({ films: favoriteFilm }))
+		}
+	}, [favoriteFilm])
 
 	return (
 		<div className="sideBar">
@@ -37,6 +45,7 @@ export const SideBar = () => {
 					<li
 						onClick={() => {
 							dispatch(orderByPopulation())
+							setIsActive(false)
 							closeMenu()
 						}}
 						className={`sideBar__item ${
@@ -48,6 +57,7 @@ export const SideBar = () => {
 					<li
 						onClick={() => {
 							dispatch(orderByLower())
+							setIsActive(false)
 							closeMenu()
 						}}
 						className={`sideBar__item ${
@@ -59,6 +69,7 @@ export const SideBar = () => {
 					<li
 						onClick={() => {
 							dispatch(orderByHight())
+							setIsActive(false)
 							closeMenu()
 						}}
 						className={`sideBar__item ${
@@ -72,6 +83,7 @@ export const SideBar = () => {
 							onClick={() => {
 								dispatch(getFavoritesFilmInUser({ films: favoriteFilm }))
 								closeMenu()
+								setIsActive(true)
 							}}
 							className={`sideBar__item ${
 								sortedBy.sortedBy === 'Favorites' && 'sideBar__item-active'
