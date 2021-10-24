@@ -6,6 +6,17 @@
 	background-color: #fff;
 	border-radius: 30px;
 	overflow: hidden;
+  position: relative;
+}
+.SearchForm-reset {
+  position: absolute;
+  right: 40px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  color: red;
+  font-weight: 700;
+  margin-right: 5px;
 }
 .SearchForm-button {
 	display: inline-block;
@@ -44,7 +55,6 @@
 	border: none;
 	outline: none;
 	padding: 0 20px;
-	text-align: center;
 }
 .SearchForm-input::placeholder {
 	font: inherit;

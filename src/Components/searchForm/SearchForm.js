@@ -1,48 +1,47 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getSearchFilm, setSearchFilm } from '../../redux/slices/blogSlice'
 import '../searchForm/searchForm.scss'
 
 const SearchForm = () => {
-  const [name, setName] = useState('');
+  const dispatch = useDispatch();
+  const searchFilm = useSelector(getSearchFilm);
 
-	const handleChange = e => {
-		const { value } = e.currentTarget
-		setName(value);
-	}
-
+  const handleChange = (e) => {
+    const { value } = e.target;
+    dispatch(setSearchFilm({ search: value }))
+  }
+  
   const reset = () => {
-		setName('');
-	}
+    dispatch(setSearchFilm({ search: '' }))
+  }
 
-	const handleSubmit = e => {
-		e.preventDefault()
-
-		this.props.onSubmit(name.trim())
-		if (!name) {
-			alert('Поле не может быть пустым!')
-			return
-		}
-		reset()
-	}
-
-  return (
-    <div>
-      <form className="SearchForm" onSubmit={handleSubmit}>
-        <input
-          className="SearchForm-input"
-          name="name"
-          onChange={handleChange}
-          value={name}
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search"
-        />
-        <button type="submit" className="SearchForm-button">
-          <span className="SearchForm-button-label">Search</span>
-        </button>
-      </form>
-    </div>
-  )
+	return (
+		<div>
+			<div className="SearchForm">
+				<input
+					className="SearchForm-input"
+					name="name"
+          onChange={(e) => handleChange(e)}
+					value={searchFilm}
+					type="text"
+					autoComplete="off"
+					autoFocus
+					placeholder="Search..."
+				/>
+        {
+          !searchFilm.length || (
+            <span className="SearchForm-reset" onClick={reset}>
+              X
+            </span>
+          )
+        }
+				<button type="submit" className="SearchForm-button">
+					<span className="SearchForm-button-label">Search</span>
+				</button>
+			</div>
+		</div>
+	)
 }
 
-export default SearchForm;
+export default SearchForm

@@ -7,7 +7,7 @@ import './assets/scss/style.scss';
 
 function App() {
 	return (
-		<div className="App container">
+		<div className="App">
 			<Switch>
 				<Route path="/home" component={Home} />
 				<Route path="/blog/:id" component={CurrentBlog} />

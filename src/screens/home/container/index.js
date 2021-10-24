@@ -9,7 +9,7 @@ export const Home = () => {
 
 
 	return (
-		<div className="home-screen">
+		<div className="home-screen container">
 			<SideBar />
       <div className="home-screen__content">
         <Header />
