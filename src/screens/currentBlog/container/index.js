@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import {
 	getAllBlogs,
 	getBlog,
@@ -10,6 +11,7 @@ import './styles.scss'
 import { CSVLink } from 'react-csv'
 
 export const CurrentBlog = () => {
+	const history = useHistory()
 	const { id } = useParams()
 	const value = useSelector(getAllBlogs)
 	const [currentBlog, setCurrentBlog] = useState()
@@ -63,7 +65,7 @@ export const CurrentBlog = () => {
 		<div>Loading....</div>
 	) : (
 		<div className="current-blog">
-			<div className="current-blog__back">
+			<div className="current-blog__back" onClick={() => history.push('/home')}>
 				<img
 					src={`https://image.tmdb.org/t/p/original/${currentBlog?.backdrop_path}`}
 					className="current-blog__img"
@@ -123,7 +125,7 @@ export const CurrentBlog = () => {
 						)}{' '}
 					</p>
 					<CSVLink {...csvReport}>
-						<button className="button">Export to CSV</button>
+						<button className="current-blog__button">Export to CSV</button>
 					</CSVLink>
 				</div>
 			</div>
