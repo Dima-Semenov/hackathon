@@ -28,6 +28,8 @@ const CardsContainer = () => {
     dispatch(getAllBlogsFromApi({ page }))
   }
 
+  console.log('value', value)
+
   const handleScroll = () => {
     const el = document.querySelector('.scroll_to_top');
     if (window.pageYOffset > 600) {

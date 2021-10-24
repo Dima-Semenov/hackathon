@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { getAllBlogs } from '../../../redux/slices/blogSlice'
+import {
+	getAllBlogs,
+	getBlog,
+	getCurrentBlog,
+} from '../../../redux/slices/blogSlice'
 import './styles.scss'
 
 export const CurrentBlog = () => {
 	const { id } = useParams()
 	const value = useSelector(getAllBlogs)
 	const [currentBlog, setCurrentBlog] = useState()
+	const dispatch = useDispatch()
+	const blog = useSelector(getBlog) || null
 
 	useEffect(() => {
 		setCurrentBlog(value.find(item => item.id === +id))
 	}, [id])
 
-	console.log(currentBlog)
+	useEffect(() => {
+		dispatch(getCurrentBlog({ movieId: id }))
+	}, [id])
 
 	return !currentBlog ? (
 		<div>Loading....</div>

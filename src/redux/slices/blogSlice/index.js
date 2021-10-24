@@ -20,10 +20,28 @@ export const getAllBlogsFromApi = createAsyncThunk(
 	},
 )
 
+export const getCurrentBlog = createAsyncThunk(
+	'blog/getCurrentBlog',
+	async body => {
+		const { movieId } = body
+		const data = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${KEY}`,
+			{
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			},
+		)
+		return data.json()
+	},
+)
+
 const initialState = {
 	allBlogs: [],
 	currentPage: 2,
 	searchFilm: '',
+  currentBlog: {},
 }
 
 export const blogSlice = createSlice({
@@ -52,10 +70,9 @@ export const blogSlice = createSlice({
 				state.allBlogs = [...state.allBlogs, ...action.payload.results]
 			}
 		})
-		// builder.addCase(getAllBlogsFromApi.pending, (state, action) => {
-		//   console.log("Pending")
-		//   state.allBlogs = action.payload.results;
-		// })
+		builder.addCase(getCurrentBlog.fulfilled, (state, action) => {
+			state.currentBlog = action.payload;
+		})
 	},
 })
 
@@ -64,5 +81,6 @@ export const { setAllBlogs, setNextPage, setSearchFilm } = blogSlice.actions
 export const getAllBlogs = state => state.blog.allBlogs
 export const getPages = state => state.blog.currentPage
 export const getSearchFilm = state => state.blog.searchFilm
+export const getBlog = state => state.blog.currentBlog
 
 export default blogSlice.reducer
