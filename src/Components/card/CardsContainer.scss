@@ -5,6 +5,11 @@
 	width: 100%;
 	flex-wrap: wrap;
 	gap: 35px;
+
+  &-title {
+    font-size: 30px;
+    padding-bottom: 30px;
+  }
 }
 
 .not_result {

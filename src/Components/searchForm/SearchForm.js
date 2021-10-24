@@ -14,6 +14,7 @@ const SearchForm = () => {
   
   const reset = () => {
     dispatch(setSearchFilm({ search: '' }))
+    window.scrollTo(0, 0)
   }
 
 	return (

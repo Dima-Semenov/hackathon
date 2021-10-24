@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getAllBlogs, getBlog, getCurrentBlog } from "../../../redux/slices/blogSlice";
+import { getAllBlogs, getCurrentBlog } from "../../../redux/slices/blogSlice";
 import './styles.scss';
 
 export const CurrentBlog = () => {
@@ -9,7 +9,6 @@ export const CurrentBlog = () => {
   const value = useSelector(getAllBlogs);
   const [currentBlog, setCurrentBlog] = useState();
   const dispatch = useDispatch();
-  const blog = useSelector(getBlog) || null;
 
   useEffect(() => {
     setCurrentBlog(value.find(item => item.id === +id))
