@@ -1,5 +1,5 @@
 .current-blog {
-	height: 100vh;
+	min-height: 100vh;
 	background-color: #eeeeee;
 	position: relative;
 	display: flex;
@@ -33,6 +33,7 @@
 			flex-direction: column;
 			top: 0;
 			border-radius: 0;
+			min-height: 1200px;
 		}
 		&-img {
 			height: 100%;
@@ -40,6 +41,7 @@
 			@media (max-width: 411px) {
 				flex-direction: column;
 				border-radius: 0;
+				height: fit-content;
 			}
 		}
 		&-about {
@@ -58,6 +60,8 @@
 		}
 	}
 	&__button {
+		position: relative;
+		top: 20px;
 		outline: none;
 		padding: 10px 20px;
 		cursor: pointer;
@@ -65,6 +69,6 @@
 		border: none;
 		background-color: #58daa8;
 		color: white;
-		margin-top: 15px;
+		margin-top: 30px;
 	}
 }

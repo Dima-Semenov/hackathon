@@ -109,13 +109,13 @@ export const CurrentBlog = () => {
 						<b>Budget: </b>
 						<span>$ {blog.budget} </span>
 					</p>
-					<p style={{ height: '50px', marginTop: '20px' }}>
+					<p style={{ marginTop: '20px' }}>
 						{blog.production_companies.map(item =>
 							item.logo_path ? (
 								<img
 									src={`https://image.tmdb.org/t/p/original/${item.logo_path}`}
 									key={item.id}
-									style={{ height: '100%', marginLeft: '10px' }}
+									style={{ height: '50px', marginLeft: '10px' }}
 								/>
 							) : (
 								<span key={item.id} style={{ marginLeft: '15px' }}>
