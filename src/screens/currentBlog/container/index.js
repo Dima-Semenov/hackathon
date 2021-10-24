@@ -22,13 +22,19 @@ export const CurrentBlog = () => {
 
 	useEffect(() => {
 		dispatch(getCurrentBlog({ movieId: id }))
+
 		setLoadData([
 			{
 				title: blog.title,
 				release_date: blog.release_date,
 				runtime: blog.runtime,
 				overview: blog.overview,
-				genres: blog.genres,
+				genres: blog.genres.map(item => item.name),
+				countries: blog.production_countries.map(item => item.name),
+				languages: blog.spoken_languages.map(item => item.english_name),
+				vote_average: blog.vote_average,
+				budget: blog.budget,
+				production_companies: blog.production_companies.map(item => item.name),
 			},
 		])
 	}, [id])
@@ -41,6 +47,11 @@ export const CurrentBlog = () => {
 		{ label: 'Runtime', key: 'runtime' },
 		{ label: 'Overview', key: 'overview' },
 		{ label: 'Genres', key: 'genres' },
+		{ label: 'Countries', key: 'countries' },
+		{ label: 'Languages', key: 'languages' },
+		{ label: 'Average score', key: 'vote_average' },
+		{ label: 'Budget', key: 'budget' },
+		{ label: 'Production companies', key: 'production_companies' },
 	]
 	const csvReport = {
 		data: loadData,
@@ -112,7 +123,7 @@ export const CurrentBlog = () => {
 						)}{' '}
 					</p>
 					<CSVLink {...csvReport}>
-						<button>Export to CSV</button>
+						<button className="button">Export to CSV</button>
 					</CSVLink>
 				</div>
 			</div>
