@@ -23,16 +23,8 @@ function App() {
 				<Route path="/home" component={Home} />
 				<Route path="/blog/:id" component={CurrentBlog} />
 
-				<Redirect to="/sign-up" />
+				<Redirect to="/home" />
 			</Switch>
-        <ToastContainer
-          transition={Zoom}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
 		</div>
 	)
 }
