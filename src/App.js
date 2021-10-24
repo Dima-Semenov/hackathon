@@ -19,27 +19,20 @@ function App() {
 	return (
 		<div className="App">
 			<Switch>
-				<Route
-					path="/
-				"
-					component={AuthPage}
-				/>
+				<Route path="/sign-up" component={AuthPage} exact />
 				<Route path="/home" component={Home} />
 				<Route path="/blog/:id" component={CurrentBlog} />
 
-				<Redirect
-					to="/
-				"
-				/>
+				<Redirect to="/sign-up" />
 			</Switch>
-			<ToastContainer
-				transition={Zoom}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-			/>
+        <ToastContainer
+          transition={Zoom}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
 		</div>
 	)
 }
