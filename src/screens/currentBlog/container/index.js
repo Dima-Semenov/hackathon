@@ -7,6 +7,7 @@ import {
 	getCurrentBlog,
 } from '../../../redux/slices/blogSlice'
 import './styles.scss'
+import { CSVLink } from 'react-csv'
 
 export const CurrentBlog = () => {
 	const { id } = useParams()
@@ -14,16 +15,38 @@ export const CurrentBlog = () => {
 	const [currentBlog, setCurrentBlog] = useState()
 	const dispatch = useDispatch()
 	const blog = useSelector(getBlog) || null
-
+	const [loadData, setLoadData] = useState()
 	useEffect(() => {
 		setCurrentBlog(value.find(item => item.id === +id))
 	}, [id])
 
 	useEffect(() => {
 		dispatch(getCurrentBlog({ movieId: id }))
+		setLoadData([
+			{
+				title: blog.title,
+				release_date: blog.release_date,
+				runtime: blog.runtime,
+				overview: blog.overview,
+				genres: blog.genres,
+			},
+		])
 	}, [id])
 
 	console.log(blog)
+	console.log(loadData)
+	const headers = [
+		{ label: 'Title', key: 'title' },
+		{ label: 'Release Date', key: 'release_date' },
+		{ label: 'Runtime', key: 'runtime' },
+		{ label: 'Overview', key: 'overview' },
+		{ label: 'Genres', key: 'genres' },
+	]
+	const csvReport = {
+		data: loadData,
+		headers: headers,
+		filename: 'Film_data.csv',
+	}
 
 	return !currentBlog ? (
 		<div>Loading....</div>
@@ -46,7 +69,7 @@ export const CurrentBlog = () => {
 					<p>
 						<span>{blog.release_date}</span> | <span>{blog.runtime} min</span>
 					</p>
-					<p>{currentBlog.overview}</p>
+					<p>{blog.overview}</p>
 					<p>
 						<b>Genres: </b>
 						{blog.genres.map(item => (
@@ -88,6 +111,9 @@ export const CurrentBlog = () => {
 							),
 						)}{' '}
 					</p>
+					<CSVLink {...csvReport}>
+						<button>Export to CSV</button>
+					</CSVLink>
 				</div>
 			</div>
 		</div>
