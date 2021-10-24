@@ -31,12 +31,12 @@ export const CurrentBlog = () => {
 				release_date: blog.release_date,
 				runtime: blog.runtime,
 				overview: blog.overview,
-				genres: blog.genres.map(item => item.name),
-				countries: blog.production_countries.map(item => item.name),
-				languages: blog.spoken_languages.map(item => item.english_name),
+				genres: blog.genres?.map(item => item.name),
+				countries: blog.production_countries?.map(item => item.name),
+				languages: blog.spoken_languages?.map(item => item.english_name),
 				vote_average: blog.vote_average,
 				budget: blog.budget,
-				production_companies: blog.production_companies.map(item => item.name),
+				production_companies: blog.production_companies?.map(item => item.name),
 			},
 		])
 	}, [id])
@@ -93,19 +93,19 @@ export const CurrentBlog = () => {
 					<p>{blog.overview}</p>
 					<p>
 						<b>Genres: </b>
-						{blog.genres.map(item => (
+						{blog.genres?.map(item => (
 							<span key={item.id}>{item.name}, </span>
 						))}{' '}
 					</p>{' '}
 					<p>
 						<b>Countries: </b>
-						{blog.production_countries.map(item => (
+						{blog.production_countries?.map(item => (
 							<span key={item.iso_3166_1}>{item.name}, </span>
 						))}{' '}
 					</p>{' '}
 					<p>
 						<b>Languages: </b>
-						{blog.spoken_languages.map(item => (
+						{blog.spoken_languages?.map(item => (
 							<span key={item.iso_639_1}>{item.english_name}, </span>
 						))}{' '}
 					</p>{' '}
@@ -118,7 +118,7 @@ export const CurrentBlog = () => {
 						<span>$ {blog.budget} </span>
 					</p>
 					<p style={{ marginTop: '20px' }}>
-						{blog.production_companies.map(item =>
+						{blog.production_companies?.map(item =>
 							item.logo_path ? (
 								<img
 									src={`https://image.tmdb.org/t/p/original/${item.logo_path}`}
